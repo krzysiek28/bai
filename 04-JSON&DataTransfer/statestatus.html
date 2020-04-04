@@ -8,7 +8,7 @@
 		<h1>Ready States</h1>
 		<p>Open a console and then click the button</p>
 		<input type="button" value="Make a connection" onclick="connect()">
-		
+
 		<script>
 			function connect(){
 				var method = 'GET';
@@ -19,10 +19,13 @@
 				xhr.send();
 			}
 			function display(r){
-				console.log("Request state:", r.readyState);
-				console.log("Status:", r.status);
-				console.log("Status text:", r.statusText);
-				console.log("-----");
+				if(r.readyState === 4 && r.status === 200){
+					console.log("Request state:", r.readyState);
+					console.log("Status:", r.status);
+					console.log("Status text:", r.statusText);
+					console.log("-----");
+					console.log(r.responseText)
+				}
 			};
 		</script>
 

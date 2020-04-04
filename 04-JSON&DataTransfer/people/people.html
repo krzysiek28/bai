@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>People</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<input type="button" value="Load data" onclick="loadPeoples()">
+<ol id="list"></ol>
+
+<script>
+    function loadPeoples() {
+        let xhr = new XMLHttpRequest();
+        xhr.overrideMimeType("application/json");
+        xhr.open("GET", "https://raw.githubusercontent.com/krzysiek28/bai/master/04-JSON%26DataTransfer/people/people.json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let data = JSON.parse(xhr.responseText);
+                data.forEach(person => {
+                    createItem(`${person.name} ${person.surname.toUpperCase()}, ${person.country}`);
+                })
+            }
+        }
+        xhr.send();
+    }
+
+    function createItem(text) {
+        let item = document.createElement('li');
+        item.appendChild(document.createTextNode(text));
+        list.appendChild(item);
+    }
+</script>
+
+</body>
+</html>

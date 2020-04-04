@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange</title>
+    <script src="exchange.js"></script>
+    <link rel="stylesheet" href="exchange.css">
+</head>
+<body onpageshow="fetchExchangeRate()">
+
+    <table id="exchangeTable">
+        <tr>
+            <th>Kurs kupna</th>
+            <th>Kurs sprzedaży</th>
+            <th>Waluta</th>
+        </tr>
+        <tr>
+            <td id="EUR_bid"></td>
+            <td id="EUR_ask"></td>
+            <td id="EUR_currency"></td>
+        </tr>
+        <tr>
+            <td id="USD_bid"></td>
+            <td id="USD_ask"></td>
+            <td id="USD_currency"></td>
+        </tr>
+        <tr>
+            <td id="GBP_bid"></td>
+            <td id="GBP_ask"></td>
+            <td id="GBP_currency"></td>
+        </tr>
+    </table>
+
+</body>
+</html>
