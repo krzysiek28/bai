@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 <body>
-  <script>
+<div id="app">
+    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+<script>
     var app = new Vue({
-      el: '#app',
-      data: {
-        films: [
-          {
-            language: 'Python',
-            popularity: 25.95
-          },
-          {
-            language: 'Java',
-            popularity: 21.42
-          },
-          {
-            language: 'JavaScript',
-            popularity: 8.26
-          },
-          {
-            language: 'C#',
-            popularity: 7.62
-          },
-          {
-            language: 'Php',
-            popularity: 7.37
-          }
-        ] 
-      }
+        el: '#app',
+        data: {
+            films: [
+                {
+                    language: 'Python',
+                    popularity: 25.95
+                },
+                {
+                    language: 'Java',
+                    popularity: 21.42
+                },
+                {
+                    language: 'JavaScript',
+                    popularity: 8.26
+                },
+                {
+                    language: 'C#',
+                    popularity: 7.62
+                },
+                {
+                    language: 'Php',
+                    popularity: 7.37
+                }
+            ]
+        },
+
+        computed: {
+
+            chartLabels: function () {
+                return [].concat(this.films).map(film => film.language);
+            },
+
+            chardData: function () {
+                return [].concat(this.films).map(film => film.popularity);
+            },
+        }
     });
-  </script>
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: app.chartLabels,
+            backgroundColor: '#29f809',
+            datasets: [{
+                label: 'Popularność języków programowania',
+                data: app.chardData,
+                borderWidth: 1
+            }],
+            backgroundColor: [
+                'rgba(70,149,222,0.2)'
+            ],
+            borderColor: [
+                'rgba(55, 55, 255, 1)'
+            ],
+        }
+    });
+</script>
 </body>
 </html>

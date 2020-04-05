@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+
+<div id="app">
+    <b>EMPLOYEE RECORD</b><br>
+    <a>Name 1: {{name1}}</a><br>
+    <a v-show="name2 !== undefined">Name2: {{name2}}<br></a>
+    Surname: {{surname}}<br>
+    <a v-if="!foreigner">Pesel: {{pesel}}<br></a>
+    <a v-else>Nationality: {{nationality}}<br></a>
+    Address: {{address}}
+</div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,7 +26,15 @@
         nationality: 'Polish',
         pesel: '92021708229',
         address: 'ul. Szeroka 3, Kraków',
-    });
+
+      // name1: 'John',
+      // name2: undefined,
+      // surname: 'Brown',
+      // foreigner: true,
+      // nationality: 'USA',
+      // pesel: '92021708229',
+      // address: 'Holland Drive 4, Chicago',
+    }});
   </script>
 
 </body>

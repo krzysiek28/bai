@@ -4,18 +4,30 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <script>
+<div id="app">
+    <p>DO WYKONANIA</p>
+    <ol>
+        <li v-for="item in sortedList">{{item}}</li>
+    </ol>
+</div>
+<script>
     var app = new Vue({
-      el: '#app',
-      data: {
-        todo: [
-          'Purchase two tickets to cinema',
-          'Feed cat',
-          'Pay cable bill',
-          'Go shopping'
-      }
+        el: '#app',
+        data: {
+            todo: [
+                'Purchase two tickets to cinema',
+                'Feed cat',
+                'Pay cable bill',
+                'Go shopping'
+            ]
+        },
+        computed: {
+            sortedList: function () {
+                return this.todo.sort();
+            }
+        }
     });
-  </script>
+</script>
 
 </body>
 </html>

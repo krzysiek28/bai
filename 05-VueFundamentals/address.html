@@ -4,20 +4,24 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <h1>Address</h1>    
-
-  <script>
+<div id="app">
+    <h1>Address</h1>
+    {{name}} {{surname}} <br>
+    {{address}} <br>
+    {{postcode}}
+</div>
+<script>
     var app = new Vue({
-      el: '#app',
-      data: {
-        name: 'Adam',
-        surname: 'Kownacki',
-        address: 'ul. Beskidzka 38',
-        postcode: '23-908',
-        city: 'Stalowa Wola'
-      }
+        el: '#app',
+        data: {
+            name: 'Adam',
+            surname: 'Kownacki',
+            address: 'ul. Beskidzka 38',
+            postcode: '23-908',
+            city: 'Stalowa Wola'
+        }
     });
-  </script>
+</script>
 
 </body>
 </html>
