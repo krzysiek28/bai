@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <binary :dec=8></binary>
+    <binary :dec=170></binary>
+    <binary :dec=204></binary>
+    <binary :dec=3855></binary>
+</div>
+
+<script type="text/x-template" id="dec-to-bin-template">
+
+</script>
+
+<script>
+    Vue.component('binary', {
+        template: `
+            <p>{{ dec }}(10) = {{ convert() }}(2)</p>
+        `,
+        props: {
+            dec: Number
+        },
+        methods: {
+            convert: function () {
+                return (this.dec >>> 0).toString(2);
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

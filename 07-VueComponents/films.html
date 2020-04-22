@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <movie title="Skazany na Shawshank" director="Frank Darabont" year="1994"></movie>
+    <movie title="Nietykalni" director="Olivier Nakache / Éric Toledano" year="2011"></movie>
+    <movie title="Zielona Mila" director="Frank Darabont" year="1999"></movie>
+</div>
+
+<script type="text/x-template" id="movie-info-template">
+    <div>
+        <p>Tytuł: {{title}}</p>
+        <p>Reżyser: {{director}}</p>
+        <p>Rok produkcji: {{year}}</p>
+        <br>
+    </div>
+</script>
+<script>
+    Vue.component('movie', {
+        template: `
+            <div>
+                 <p>Tytuł: {{title}}</p>
+                 <p>Reżyser: {{director}}</p>
+                 <p>Rok produkcji: {{year}}</p>
+                 <br>
+            </div>
+        `,
+        props: ['title', 'director', 'year']
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+</body>
+</html>

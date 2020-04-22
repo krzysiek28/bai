@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Api</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <usd-rate></usd-rate>
+</div>
+
+<script>
+    Vue.component('usd-rate', {
+        template: `
+            <div>
+                Kurs kupna dolara (USD): {{bid}} <br>
+                Kurs sprzedaży dolara (USD): {{ask}}
+            </div>
+        `,
+        data() {
+            return {
+                ask: 0,
+                bid: 0
+            }
+        },
+        mounted() {
+            this.getExchangeRate()
+        },
+        computed: {
+            getExchangeRate: function () {
+                const request = new XMLHttpRequest();
+                request.open("GET", "http://api.nbp.pl/api/exchangerates/rates/c/usd/");
+                request.onreadystatechange = () => {
+                    if (request.readyState == 4 && request.status == 200) {
+                        this.ask = JSON.parse(request.responseText).rates[0].ask;
+                        this.bid = JSON.parse(request.responseText).rates[0].bid;
+                    }
+                };
+                request.send();
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+
+</script>
+</body>
+</html>
