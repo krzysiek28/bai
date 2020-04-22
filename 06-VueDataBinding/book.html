@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Book</title>
+</head>
+<body>
+    <div id="app">
+        <span>Tytuł</span>
+        <input type="text" v-model="bookTitle" /><br>
+        <span>Imiona autora:</span>
+        <input type="text" v-model="authorName" /><br>
+        <span>Nazwiska autora:</span>
+        <input type="text" v-model="authorSurname" /><br>
+        <button v-on:click="save">Zapisz</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                bookTitle: '',
+                authorName: '',
+                authorSurname: '',
+            },
+            methods: {
+                save() {
+                    const { bookTitle, authorName, authorSurname } = this;
+                    console.log({ bookTitle, authorName, authorSurname });
+                },
+            },
+        });
+    </script>
+</body>
+</html>

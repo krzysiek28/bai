@@ -13,6 +13,14 @@
       el: '#app',
       data: {
         name: ''
+      },
+      methods: {
+        changeName: function(name) {
+          this.name = name;
+        },
+        showName: function() {
+          console.log(name)
+        }
       }
     });
   </script>

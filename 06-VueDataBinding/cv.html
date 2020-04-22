@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>CV data</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <form v-on:submit="submit">
+        <span>Imię:</span>
+        <input type="text" v-model="form.name"/> <br>
+        <span>Nazwisko:</span>
+        <input type="text" v-model="form.surname"/><br>
+        <span>Wiek:</span>
+        <input type="number" v-model.number="form.age"/><br>
+        <span>Płeć:</span>
+        <template v-for="value in sexs">
+            <input type="radio" v-model="form.sex" :value="value"/>
+            <span>{{value}}</span>
+        </template><br>
+        <span>Wykształcenie:</span>
+        <select v-model="form.education">
+            <option v-for="value in educations" :value="value">{{value}}</option>
+        </select><br>
+        <div>Umiejętności:</div>
+        <div v-for="skill in form.skills">
+            <input type="checkbox" v-model="skill.checked"/>
+            <span>{{skill.name}}</span>
+        </div>
+        <button type="submit">Zatwierdź</button>
+        <button type="button" v-on:click="load">Wczytaj</button>
+    </form>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            form: {
+                name: "",
+                surname: "",
+                age: "",
+                sex: "",
+                education: "",
+                skills: [
+                    {name: "Obsługa komputera", checked: false},
+                    {name: "Prawo jazdy", checked: false},
+                    {name: "Kreatywność", checked: false},
+                    {name: "Praca w zespole", checked: false}
+                ]
+            },
+            sexs: ['Mężczyzna', 'Kobieta'],
+            educations: ['brak', 'podstawowe', 'średnie', 'wyższe']
+        },
+        methods: {
+            submit() {
+                localStorage.setItem('cv', JSON.stringify(this.form));
+            },
+            load() {
+                this.form = JSON.parse(localStorage.getItem('cv'));
+            }
+        }
+    });
+</script>
+</body>
+</html>
